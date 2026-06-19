@@ -5,6 +5,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcryptjs");
 const db = require("./Models/queries");
 //Ejs
 app.set("view engine", "ejs");
@@ -25,7 +26,8 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);
@@ -49,13 +51,19 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+//* user local variable (available across views <- as currentUser )
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //Routes
 const signUpRouter = require("./Routes/signUpRouter");
 const logInRouter = require("./Routes/logInRouter");
 const logOutRouter = require("./Routes/logOutRouter");
 
 app.get("/", (req, res) => {
-  res.render("home", { user: req.user });
+  res.render("home");
 });
 app.use("/sign-up", signUpRouter);
 
