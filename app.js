@@ -51,14 +51,17 @@ passport.deserializeUser(async (id, done) => {
 
 //Routes
 const signUpRouter = require("./Routes/signUpRouter");
-const signInRouter = require("./Routes/logInRouter");
+const logInRouter = require("./Routes/logInRouter");
+const logOutRouter = require("./Routes/logOutRouter");
 
 app.get("/", (req, res) => {
   res.render("home", { user: req.user });
 });
 app.use("/sign-up", signUpRouter);
 
-app.use("/log-in", signInRouter);
+app.use("/log-in", logInRouter);
+
+app.use("/log-out", logOutRouter);
 
 app.get("err", (err, req, res, next) => {
   res.send(err);

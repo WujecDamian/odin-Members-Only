@@ -1,7 +1,7 @@
 const db = require("../Models/queries");
 
 const renderForm = (req, res) => {
-  res.render("signUp");
+  res.render("signUp", { user: req.user });
 };
 
 const createUser = async (req, res, next) => {
