@@ -1,0 +1,29 @@
+{
+  "name": "odin-members-only",
+  "version": "1.0.0",
+  "description": "https://www.theodinproject.com/lessons/node-path-nodejs-members-only",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WujecDamian/odin-Members-Only.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/WujecDamian/odin-Members-Only/issues"
+  },
+  "homepage": "https://github.com/WujecDamian/odin-Members-Only#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "passport": "^0.7.0",
+    "pg": "^8.22.0",
+    "pg-pool": "^3.14.0"
+  }
+}
