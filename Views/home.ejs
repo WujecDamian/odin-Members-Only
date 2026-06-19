@@ -9,5 +9,8 @@
   <body>
     <%- include('./partials/nav.ejs') %>
     <h1>Home</h1>
+    <% if(user){ %>
+    <h2>Welcome <%=user.full_name%>!</h2>
+    <%}%>
   </body>
 </html>
