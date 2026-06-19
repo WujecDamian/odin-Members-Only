@@ -2,7 +2,7 @@ const db = require("../Models/queries");
 const passport = require("passport");
 
 const renderForm = (req, res) => {
-  res.render("LogIn", { user: req.user });
+  res.render("LogIn");
 };
 
 const logInUser = passport.authenticate("local", {
