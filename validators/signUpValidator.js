@@ -7,15 +7,15 @@ const validateSignUpForm = [
     .withMessage("Full Name cannot be empty")
     .isLength({ min: 1, max: 40 })
     .withMessage("Full Name Must be between 1-40 characters")
-    .isAlpha()
-    .withMessage("Full Name cannot contain special characters"),
+    .isAlpha("en-US", { ignore: " " })
+    .withMessage("Full Name cannot contain special characters or numbers"),
   body("username")
     .escape()
     .notEmpty()
     .withMessage("Username cannot be empty")
     .isLength({ min: 1, max: 40 })
     .withMessage("Username must be between 1-40 characters")
-    .isAlpha()
+    .isAlphanumeric()
     .withMessage("Username cannot contain special characters"),
   body("password")
     .escape()
@@ -23,7 +23,7 @@ const validateSignUpForm = [
     .withMessage("Password cannot be empty")
     .isLength({ min: 8, max: 32 })
     .withMessage("Password ust be between 8-32 characters")
-    .isAlpha()
+    .isAlphanumeric()
     .withMessage("Password cannot contain special characters"),
   body("passwordConfirm").custom((passwordConfirm, { req }) => {
     return passwordConfirm === req.body.password;

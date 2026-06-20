@@ -7,7 +7,7 @@ const validateLogInForm = [
     .withMessage("Username cannot be empty")
     .isLength({ min: 1, max: 40 })
     .withMessage("Username must be between 1-40 characters")
-    .isAlpha()
+    .isAlphanumeric()
     .withMessage("Username cannot contain special characters"),
   body("password")
     .escape()
@@ -15,7 +15,7 @@ const validateLogInForm = [
     .withMessage("Password cannot be empty")
     .isLength({ min: 8, max: 32 })
     .withMessage("Password ust be between 8-32 characters")
-    .isAlpha()
+    .isAlphanumeric()
     .withMessage("Password cannot contain special characters"),
 
   (req, res, next) => {
