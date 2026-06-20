@@ -27,10 +27,26 @@ const addMembership = async (userId) => {
   await db.query("UPDATE users SET membership = TRUE WHERE id = $1", [userId]);
 };
 
+const addNewMessage = async (title, message, userId) => {
+  await db.query(
+    "INSERT INTO messages (title,message,timestamp,user_id) VALUES ($1,$2,NOW(),$3)",
+    [title, message, userId],
+  );
+};
+
+const getAllMessages = async () => {
+  const { rows } = await db.query(
+    "SELECT title,message,full_name AS author FROM messages JOIN users ON messages.user_id = users.id",
+  );
+  return rows;
+};
+
 module.exports = {
   getAllUsers,
   getUserByUsername,
   getUserById,
   createUser,
   addMembership,
+  addNewMessage,
+  getAllMessages,
 };
