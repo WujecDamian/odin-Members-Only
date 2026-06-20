@@ -63,6 +63,7 @@ const logInRouter = require("./Routes/logInRouter");
 const logOutRouter = require("./Routes/logOutRouter");
 const clubRouter = require("./Routes/clubRouter");
 const newMessageRouter = require("./Routes/newMessageRouter");
+const deleteMessageRouter = require("./Routes/deleteMessageRouter");
 
 app.get("/", async (req, res) => {
   const messages = await db.getAllMessages();
@@ -74,6 +75,7 @@ app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
 app.use("/club", clubRouter);
 app.use("/new-message", newMessageRouter);
+app.use("/delete-message", deleteMessageRouter);
 
 app.get("err", (err, req, res, next) => {
   res.send(err);

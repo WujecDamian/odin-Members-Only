@@ -37,9 +37,13 @@ const addNewMessage = async (title, message, userId) => {
   );
 };
 
+const deleteMessage = async (messageId) => {
+  await db.query("DELETE FROM messages WHERE id=$1", [messageId]);
+};
+
 const getAllMessages = async () => {
   const { rows } = await db.query(
-    "SELECT title,message,full_name AS author,timestamp AS date FROM messages JOIN users ON messages.user_id = users.id",
+    "SELECT messages.id,title,message,full_name AS author,timestamp AS date FROM messages JOIN users ON messages.user_id = users.id",
   );
   return rows;
 };
@@ -52,5 +56,6 @@ module.exports = {
   addMembership,
   setAdmin,
   addNewMessage,
+  deleteMessage,
   getAllMessages,
 };
