@@ -23,9 +23,14 @@ const createUser = async (fullName, username, password, passwordSalt) => {
   );
 };
 
+const addMembership = async (userId) => {
+  await db.query("UPDATE users SET membership = TRUE WHERE id = $1", [userId]);
+};
+
 module.exports = {
   getAllUsers,
   getUserByUsername,
   getUserById,
   createUser,
+  addMembership,
 };

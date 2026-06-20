@@ -61,15 +61,15 @@ app.use((req, res, next) => {
 const signUpRouter = require("./Routes/signUpRouter");
 const logInRouter = require("./Routes/logInRouter");
 const logOutRouter = require("./Routes/logOutRouter");
+const clubRouter = require("./Routes/clubRouter");
 
 app.get("/", (req, res) => {
   res.render("home");
 });
 app.use("/sign-up", signUpRouter);
-
 app.use("/log-in", logInRouter);
-
 app.use("/log-out", logOutRouter);
+app.use("/club", clubRouter);
 
 app.get("err", (err, req, res, next) => {
   res.send(err);
