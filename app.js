@@ -62,14 +62,18 @@ const signUpRouter = require("./Routes/signUpRouter");
 const logInRouter = require("./Routes/logInRouter");
 const logOutRouter = require("./Routes/logOutRouter");
 const clubRouter = require("./Routes/clubRouter");
+const newMessageRouter = require("./Routes/newMessageRouter");
 
-app.get("/", (req, res) => {
-  res.render("home");
+app.get("/", async (req, res) => {
+  const messages = await db.getAllMessages();
+
+  res.render("home", { messages });
 });
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
 app.use("/club", clubRouter);
+app.use("/new-message", newMessageRouter);
 
 app.get("err", (err, req, res, next) => {
   res.send(err);
