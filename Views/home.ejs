@@ -7,26 +7,23 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <%- include('./partials/nav.ejs') %>
-    <h1>Home</h1>
-    <% if(currentUser){ %>
+    <%- include('./partials/nav.ejs') %> <% if(currentUser){ %>
     <h2>Welcome <%=currentUser.full_name%>!</h2>
     <div class="new__message">
       <a href="/new-message">New Message</a>
     </div>
     <%}%>
     <section class="messages">
-      <% if(currentUser){%>
+      <% if(currentUser){%> <% messages.forEach(function(message){%>
       <div class="message">
-        <% messages.forEach(function(message){%>
-        <h3><%=message.title%></h3>
-        <h4><%=message.message%></h4>
+        <h3 class="message_title"><%=message.title%></h3>
+        <h4 class="message_content"><%=message.message%></h4>
         <% if(currentUser.membership){ %>
-        <h4><%=message.author%></h4>
-        <h4><%=message.date%></h4>
+        <h5 class="message_author"><%=message.author%></h5>
+        <h6 class="message_date"><%=message.date%></h6>
         <% if(currentUser.is_admin){ %>
-        <a href="/delete-message/<%=message.id%>"><button>Delete</button></a
-        ><%}%>
+        <a href="/delete-message/<%=message.id%>"><button>Delete</button></a>
+        <%}%>
       </div>
       <%}})%> <%}else{%> <% messages.forEach(function(message){%>
       <div class="message">

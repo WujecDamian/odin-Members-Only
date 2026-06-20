@@ -48,3 +48,34 @@ form {
     padding: 0.5rem;
   }
 }
+.messages {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem;
+}
+.message {
+  border: 1px solid grey;
+  border-radius: 1rem;
+  margin: 0 auto;
+  width: 50vw;
+  padding: 2rem;
+  .message_title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .message_content {
+    font-weight: 400;
+  }
+  .message_author {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    font-style: italic;
+    text-align: right;
+  }
+  .message_date {
+    color: rgba(0, 0, 0, 0.6);
+    text-align: right;
+  }
+}
