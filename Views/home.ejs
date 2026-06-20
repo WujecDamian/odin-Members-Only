@@ -15,5 +15,14 @@
       <a href="/new-message">New Message</a>
     </div>
     <%}%>
+    <section class="messages">
+      <% messages.forEach(function(message){%>
+      <div class="message">
+        <h3><%=message.title%></h3>
+        <h4><%=message.message%></h4>
+        <h4><%=message.author%></h4>
+      </div>
+      <%})%>
+    </section>
   </body>
 </html>
