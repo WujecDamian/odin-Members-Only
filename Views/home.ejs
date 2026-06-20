@@ -11,6 +11,9 @@
     <h1>Home</h1>
     <% if(currentUser){ %>
     <h2>Welcome <%=currentUser.full_name%>!</h2>
+    <div class="new__message">
+      <a href="/new-message">New Message</a>
+    </div>
     <%}%>
   </body>
 </html>
