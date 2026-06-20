@@ -26,6 +26,9 @@ const createUser = async (fullName, username, password, passwordSalt) => {
 const addMembership = async (userId) => {
   await db.query("UPDATE users SET membership = TRUE WHERE id = $1", [userId]);
 };
+const setAdmin = async (userId) => {
+  await db.query("UPDATE users SET is_admin = TRUE WHERE id = $1", [userId]);
+};
 
 const addNewMessage = async (title, message, userId) => {
   await db.query(
@@ -36,7 +39,7 @@ const addNewMessage = async (title, message, userId) => {
 
 const getAllMessages = async () => {
   const { rows } = await db.query(
-    "SELECT title,message,full_name AS author FROM messages JOIN users ON messages.user_id = users.id",
+    "SELECT title,message,full_name AS author,timestamp AS date FROM messages JOIN users ON messages.user_id = users.id",
   );
   return rows;
 };
@@ -47,6 +50,7 @@ module.exports = {
   getUserById,
   createUser,
   addMembership,
+  setAdmin,
   addNewMessage,
   getAllMessages,
 };

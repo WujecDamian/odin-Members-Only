@@ -13,6 +13,8 @@ const checkSecretCode = async (req, res) => {
   const userId = req.body.currentUserId;
   if (code === process.env.SECRET_CODE) {
     await db.addMembership(userId);
+  } else if (code === process.env.SECRET_ADMIN_CODE) {
+    await db.setAdmin(userId);
   }
   res.redirect("/");
 };
